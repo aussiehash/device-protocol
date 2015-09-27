@@ -74,6 +74,8 @@ enum MessageType {
 	MessageType_DebugLinkStop = 103 [(wire_debug_in) = true];
 	MessageType_DebugLinkLog = 104 [(wire_debug_out) = true];
 	MessageType_DebugLinkFillConfig = 105 [(wire_debug_out) = true];
+	MessageType_Peek = 200 [(wire_in) = true];
+        MessageType_PeekResponse = 201 [(wire_out) = true];
 }
 
 ////////////////////
@@ -691,4 +693,13 @@ message DebugLinkLog {
  * Request: Ask device to fill config area with sample data (used for testing firmware upload)
  */
 message DebugLinkFillConfig {
+}
+
+message Peek {
+        required uint32 address = 1;
+        required uint32 length = 2;
+}
+
+message PeekResponse {
+        required bytes data = 1;
 }
